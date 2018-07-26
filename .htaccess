@@ -1,0 +1,16 @@
+AddDefaultCharset UTF-8
+
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+Header always set Access-Control-Max-Age "1000"
+Header always set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"
+ 
+Options -Indexes
+ 
+RewriteEngine On
+ 
+RewriteCond %{REQUEST_URI} ^/
+RewriteRule ^(\/?.*)$ public/$1 [L]
+
+RewriteCond %{HTTP:Authorization} .
+    #RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
